@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lend</title>
+    <meta name="Description" content="Book and Lend Your vehicles!">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/lend.css')}}">
+</head>
+
+<body>
+    <header>
+        <img src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png" alt="Company Logo"
+            class="company-logo">
+        <nav class="navbar">
+            <ul>
+                <li class="nav-link"><a href="/book">Book a Car</a></li>
+                <li class="nav-link"><a href="{{url_for('driveMe.lend')}}">Lend Your Car</a></li>
+                <li class="nav-link"><a href="/profile">Profile</li>
+                <li style="color: rgb(44, 44, 165);"><a href="{{url_for('auth.logout')}}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
+        <div class="lend">
+                <form action="{{url_for('driveMe.lend')}}" method="POST">
+                    <h2>Lend</h2>
+                    <div class="lend-div">
+                    <label for="car_name"></label>
+                    <input class="form-control" type="text" name="car_name" id="car_name" placeholder=" Car Name "  >
+                    </div>
+                    <div class="lend-div">
+                    <label for="seater"></label>
+                    <input class="form-control" type="number" name="seater" id="seater" placeholder="Car Seater">
+                    </div>
+                    <div class="lend-div">
+                    <label for="milage"></label>
+                    <input class="form-control" type="number" name="mileage" id="mileage" placeholder="Milage">
+                    </div>
+                    <div class="lend-div">
+                    <label for="fuel_type"></label>
+                    <input class="form-control" type="text" name="fuel_type" id="fuel_type" placeholder="CAR FUEL TYPE">
+                    </div>
+                    <div class="lend-div">
+                    <label for="price"></label>
+                    <input class="form-control" type="number" name="price" id="price" placeholder="PRICE per DAY">
+                    </div>
+                    <div class="lend-div">
+                    <input type="submit" value="submit" class="button" >
+                    </div>
+                </form>
+        </div>
+    
+ 
+</body>
+
+</html>

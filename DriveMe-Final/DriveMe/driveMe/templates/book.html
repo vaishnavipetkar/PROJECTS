@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/book.css')}}">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <img src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png" alt="Company Logo"
+            class="company-logo">
+        <nav class="navbar">
+            <ul>
+                <li class="nav-link"><a href="/book">Book a Car</a></li>
+                <li class="nav-link"><a href="{{url_for('driveMe.lend')}}">Lend Your Car</a></li>
+                <li class="nav-link"><a href="/profile">Profile</li>
+                <li style="color: rgb(44, 44, 165);"><a href="{{url_for('auth.logout')}}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="register ">
+        <div style="overflow-x:auto;">
+            <table>
+
+                <tr style="background-color:rgb(179, 226, 250) ">
+                    <th>SR NO
+                    </th>
+                    <th>CAR</th>
+                    <th>Seater</th>
+                    <th>Mileage</th>
+                    <th>Fuel</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+
+
+                <tbody>
+                    {% for data in cars %}
+                    <tr>
+                        <td>{{data[0]}}</td>
+                        <td>{{data[1]}}</td>
+                        <td>{{data[2]}}</td>
+                        <td>{{data[3]}}</td>
+                        <td>{{data[4]}}</td>
+                        <td>{{data[5]}}</td>
+                        
+                        <td>
+                            <form action="/book_button" method="POST">
+                            <button type="submit" value="{{data[0]}}" name="car_id">BOOK</button>
+                            </form>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer>
+        <p>footer foo bazinga</p>
+    </footer>
+</body>
+
+</html>
