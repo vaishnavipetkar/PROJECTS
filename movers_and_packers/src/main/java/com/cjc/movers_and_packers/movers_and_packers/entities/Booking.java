@@ -1,6 +1,5 @@
 package com.cjc.movers_and_packers.movers_and_packers.entities;
 import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
