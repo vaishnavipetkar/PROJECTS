@@ -1,5 +1,6 @@
 package com.cjc.movers_and_packers.movers_and_packers.entities;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "User")
+@Entity
 public class User {
 
     @Id
@@ -29,7 +31,7 @@ public class User {
     private String password;
 
     @Column(name = "Contact Number")
-    private String contactNumber;
+    private Long contactNumber;
 
     @Column(name = "Address")
     private String address;
