@@ -3,9 +3,19 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Movers_And_Packers_Front-End_Project": {
+    "movers_and_packers_frontend": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/movers-and-packers-front-end-project",
+            "outputPath": "dist/movers_and_packers_frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -57,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Movers_And_Packers_Front-End_Project:build:production"
+              "buildTarget": "movers_and_packers_frontend:build:production"
             },
             "development": {
-              "buildTarget": "Movers_And_Packers_Front-End_Project:build:development"
+              "buildTarget": "movers_and_packers_frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -68,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "Movers_And_Packers_Front-End_Project:build"
+            "buildTarget": "movers_and_packers_frontend:build"
           }
         },
         "test": {
