@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.cjc.movers_and_packers.movers_and_packers.DTO.ErrorResponseDTO;
+import com.cjc.movers_and_packers.movers_and_packers.DTO.UserDTO;
+import com.cjc.movers_and_packers.movers_and_packers.DTO.UserExistsDTO;
 import com.cjc.movers_and_packers.movers_and_packers.entities.User;
 import com.cjc.movers_and_packers.movers_and_packers.services.UserServices;
 
@@ -20,10 +25,20 @@ public class UserController {
 
     @Autowired UserServices userService;
 
-    @PostMapping("/register" )
-    public ResponseEntity<User> registerUser(@RequestBody User user){
-       User users = userService.registerUser(user);
-       return ResponseEntity.ok(users);
+    @PostMapping(value = "/register", produces = "application/json" )
+    public ResponseEntity<User> registerUser(@RequestBody UserDTO userDTO){
+       User user = userService.registerUser(userDTO);
+       return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponseDTO> handleGenericException(Exception ex) {
+        ErrorResponseDTO errorResponse = new ErrorResponseDTO(
+        "An unexpected error occurred",
+        HttpStatus.INTERNAL_SERVER_ERROR.value(),
+        HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     // @PostMapping("/login")
@@ -36,6 +51,12 @@ public class UserController {
     public ResponseEntity<String> loginUser(@PathVariable String email, @PathVariable String password){
         String user = userService.loginUser(email, password);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/doesUserExist", produces = "application/json")
+    public ResponseEntity<Boolean> doesUserExist(@RequestBody UserExistsDTO userExistsDTO) {
+        Boolean user = userService.doesUserExist(userExistsDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
     @PutMapping("/update/{id}")
