@@ -6,12 +6,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ErrorResponseDTO {
+public class UserUpdateDTO {
 
-    // public String errorMessage;
-    // public int statusCode;
-    // public String statusMessage;
-
-    public String message;
+    private String name;
+    private String email;
+    private Long contactNumber;
+    private String address;
     
 }
