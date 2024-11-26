@@ -5,6 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,17 +19,21 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Services {
 
-    @Id
+ @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Service Id")
     private Long serviceId;
 
+    @NotBlank(message = "Service name is required.")
+    @Size(max = 100, message = "Service name must not exceed 100 characters.")
     @Column(name = "Service Name")
     private String serviceName;
 
+    @NotBlank(message = "Description is required.")
     @Column(name = "Description")
     private String description;
 
+    @Positive(message = "Price must be greater than zero.")
     @Column(name = "Price")
     private double price;
     
